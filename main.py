@@ -4,8 +4,16 @@ from nltk.probability import FreqDist
 
 nltk.download('punkt')
 
-# Зразок тексту
-text = "Це приклад тексту для створення n-грамної моделі. Ми хочемо вивчити, як часто зустрічаються пари та трійки слів."
+def load_text_from_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        text = file.read()
+    return text
+
+# Зазначте шлях до вашого файлу
+file_path = 'text.txt'
+
+# Завантаження тексту із файлу
+text = load_text_from_file(file_path)
 
 # Токенізація тексту
 words = nltk.word_tokenize(text)
@@ -16,7 +24,7 @@ bi_grams = list(bigrams(words))
 # Обчислення частот біграм
 freq_bi_grams = FreqDist(bi_grams)
 
-def generate_message(seed_word, num_words=3):
+def generate_message(seed_word, num_words=6):
     message = [seed_word]
     current_word = seed_word
 
