@@ -46,10 +46,14 @@ def generate_message(seed_word, num_words=6):
 
     return ' '.join(message)
 
-# Введене слово для генерації повідомлення
+# Зациклення програми
+while True:
+    # Введене слово для генерації повідомлення
+    user_input = input("Введіть слово (або 'exit' для виходу): ")
 
-# print(freq_bi_grams.most_common())
-user_input = input("Введіть слово: ")
-generated_message = generate_message(user_input)
+    # Перевірка на вихід з програми
+    if user_input.lower() == 'exit':
+        break
 
-print(f"Згенероване повідомлення: {generated_message}")
+    generated_message = generate_message(user_input)
+    print(f"Згенероване повідомлення: {generated_message}")
