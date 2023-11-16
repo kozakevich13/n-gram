@@ -31,10 +31,15 @@ def generate_message(seed_word, num_words=6):
     for _ in range(num_words - 1):
         # Вибір біграм, що починається поточним словом
         next_words = [word[1] for word in freq_bi_grams if word[0] == current_word]
-        
+
         if next_words:
             next_word = next_words[0]
             message.append(next_word)
+
+            # Перевірка, чи є крапка у згенерованому повідомленні
+            if '.' in next_word:
+                break
+
             current_word = next_word
         else:
             break
@@ -42,6 +47,8 @@ def generate_message(seed_word, num_words=6):
     return ' '.join(message)
 
 # Введене слово для генерації повідомлення
+
+# print(freq_bi_grams.most_common())
 user_input = input("Введіть слово: ")
 generated_message = generate_message(user_input)
 
